@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Optional
-
+from sqlmodel import SQLModel, Field as SQLField
 
 class BookCreate(BaseModel):
     title: str = Field(
@@ -22,6 +22,21 @@ class BookCreate(BaseModel):
         max_length=1000
     )
 
-
 class BookRead(BookCreate):
     book_id: int
+
+class Book(SQLModel, BookRead, table=True):
+    book_id: int = SQLField(default=None, primary_key=True)
+
+
+
+
+
+class BookCreate(BaseModel):
+    title: str
+    author: str
+    year: int
+    description: Optional[str] = None
+
+
+

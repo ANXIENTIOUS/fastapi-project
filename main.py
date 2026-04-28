@@ -1,15 +1,13 @@
 from fastapi import FastAPI
-from app.routes import task
+from contextlib import asynccontextmanager
+from app.db import init_db
+from app.routes import books_v2
 
-app = FastAPI(
-    title="Система управления книгами",
-    description="Простейшее API для управления списком книг (CSV), основанное на "
-                "фреймворке FastAPI.",
-    version="0.0.1",
-    contact={
-        "name": "Крестьянских Максим Григорьевич",
-        "email": "krestianskikh.mg@phystech.edu",
-    },
-)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()
+    yield
 
-app.include_router(task.router)
+app = FastAPI(lifespan=lifespan)
+
+app.include_router(books_v2.router)
