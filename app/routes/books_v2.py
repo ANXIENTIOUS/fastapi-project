@@ -1,6 +1,8 @@
-from fastapi import APIRouter, status, Depends, HTTPException
+from fastapi import APIRouter, status, Depends, HTTPException, Query
 from sqlmodel import Session, select
-from typing import List
+from typing import List, Optional
+
+from app.auth.dependencies import get_current_user
 
 from app.db import get_session
 from app.schemas import book as schema_book
@@ -33,9 +35,22 @@ def create_book(book: schema_book.BookCreate,
 
 # READ ALL
 @router.get("/", response_model=List[schema_book.BookRead])
-def read_books(session: Session = Depends(get_session)):
+def read_books(
+    title: Optional[str] = Query(default=None),
+    author: Optional[str] = Query(default=None),
+    session: Session = Depends(get_session)
+):
+    query = select(schema_book.Book)
 
-    books = session.exec(select(schema_book.Book)).all()
+    # Фильтр по названию
+    if title:
+        query = query.where(schema_book.Book.title.contains(title))
+
+    # Фильтр по автору
+    if author:
+        query = query.where(schema_book.Book.author.contains(author))
+
+    books = session.exec(query).all()
 
     if not books:
         raise HTTPException(
