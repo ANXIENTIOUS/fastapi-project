@@ -1,0 +1,35 @@
+[MASTER]
+ignore=venv
+jobs=0
+
+[MESSAGES CONTROL]
+disable=
+    missing-docstring,
+    too-few-public-methods,
+    too-many-arguments,
+    too-many-locals,
+    too-many-statements,
+    unused-argument,
+    import-error
+
+[FORMAT]
+max-line-length=100
+
+[BASIC]
+good-names=i,j,k,ex,Run,_,id,db
+
+[DESIGN]
+max-args=10
+max-locals=20
+
+[TYPECHECK]
+ignored-classes=Depends,Session
+
+[IMPORTS]
+known-third-party=fastapi,sqlmodel
+
+[VARIABLES]
+dummy-variables-rgx=_|dummy
+
+[LOGGING]
+logging-format-style=old

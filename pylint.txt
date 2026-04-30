@@ -1,0 +1,75 @@
+************* Module dependencies
+app/auth/dependencies.py:14:0: C0330: Wrong hanging indentation before block (add 4 spaces).
+    token: str = Depends(oauth2_scheme),
+    ^   | (bad-continuation)
+app/auth/dependencies.py:15:0: C0330: Wrong hanging indentation before block (add 4 spaces).
+    session: Session = Depends(get_session)
+    ^   | (bad-continuation)
+app/auth/dependencies.py:10:0: C0103: Constant name "oauth2_scheme" doesn't conform to UPPER_CASE naming style (invalid-name)
+************* Module utils
+app/auth/utils.py:8:0: C0103: Constant name "pwd_context" doesn't conform to UPPER_CASE naming style (invalid-name)
+************* Module task
+app/routes/task.py:4:0: E0402: Attempted relative import beyond top-level package (relative-beyond-top-level)
+app/routes/task.py:13:0: C0103: Constant name "router" doesn't conform to UPPER_CASE naming style (invalid-name)
+app/routes/task.py:2:0: C0411: standard import "from typing import List" should be placed before "from fastapi import APIRouter, status, HTTPException" (wrong-import-order)
+app/routes/task.py:5:0: C0411: first party import "from app.data_handler import write_book_to_csv, read_books_from_csv, read_book_from_csv, update_book_in_csv, delete_book_from_csv" should be placed before "from ..schemas import book as schema_book" (wrong-import-order)
+************* Module user
+app/schemas/user.py:20:0: C0303: Trailing whitespace (trailing-whitespace)
+************* Module book
+app/schemas/book.py:42:0: C0305: Trailing newlines (trailing-newlines)
+app/schemas/book.py:35:0: E0102: class already defined line 5 (function-redefined)
+app/schemas/book.py:2:0: C0411: standard import "from typing import Optional" should be placed before "from pydantic import BaseModel, Field" (wrong-import-order)
+************* Module data_handler
+app/data_handler.py:57:12: C0103: Variable name "b" doesn't conform to snake_case naming style (invalid-name)
+************* Module db
+app/db.py:5:0: C0103: Constant name "engine" doesn't conform to UPPER_CASE naming style (invalid-name)
+************* Module books_v2
+app/routes/books_v2.py:39:0: C0330: Wrong hanging indentation before block (add 4 spaces).
+    title: Optional[str] = Query(default=None),
+    ^   | (bad-continuation)
+app/routes/books_v2.py:40:0: C0330: Wrong hanging indentation before block (add 4 spaces).
+    author: Optional[str] = Query(default=None),
+    ^   | (bad-continuation)
+app/routes/books_v2.py:41:0: C0330: Wrong hanging indentation before block (add 4 spaces).
+    session: Session = Depends(get_session)
+    ^   | (bad-continuation)
+app/routes/books_v2.py:10:0: C0103: Constant name "router" doesn't conform to UPPER_CASE naming style (invalid-name)
+app/routes/books_v2.py:47:28: E1101: Instance of 'FieldInfo' has no 'contains' member (no-member)
+app/routes/books_v2.py:51:28: E1101: Instance of 'FieldInfo' has no 'contains' member (no-member)
+app/routes/books_v2.py:5:0: W0611: Unused get_current_user imported from app.auth.dependencies (unused-import)
+app/routes/books_v2.py:3:0: C0411: standard import "from typing import List, Optional" should be placed before "from fastapi import APIRouter, status, Depends, HTTPException, Query" (wrong-import-order)
+************* Module routes.task
+app/routes/task.py:4:0: E0402: Attempted relative import beyond top-level package (relative-beyond-top-level)
+app/routes/task.py:13:0: C0103: Constant name "router" doesn't conform to UPPER_CASE naming style (invalid-name)
+app/routes/task.py:2:0: C0411: standard import "from typing import List" should be placed before "from fastapi import APIRouter, status, HTTPException" (wrong-import-order)
+app/routes/task.py:5:0: C0411: first party import "from app.data_handler import write_book_to_csv, read_books_from_csv, read_book_from_csv, update_book_in_csv, delete_book_from_csv" should be placed before "from ..schemas import book as schema_book" (wrong-import-order)
+************* Module routes.books_v2
+app/routes/books_v2.py:39:0: C0330: Wrong hanging indentation before block (add 4 spaces).
+    title: Optional[str] = Query(default=None),
+    ^   | (bad-continuation)
+app/routes/books_v2.py:40:0: C0330: Wrong hanging indentation before block (add 4 spaces).
+    author: Optional[str] = Query(default=None),
+    ^   | (bad-continuation)
+app/routes/books_v2.py:41:0: C0330: Wrong hanging indentation before block (add 4 spaces).
+    session: Session = Depends(get_session)
+    ^   | (bad-continuation)
+app/routes/books_v2.py:10:0: C0103: Constant name "router" doesn't conform to UPPER_CASE naming style (invalid-name)
+app/routes/books_v2.py:47:28: E1101: Instance of 'FieldInfo' has no 'contains' member (no-member)
+app/routes/books_v2.py:51:28: E1101: Instance of 'FieldInfo' has no 'contains' member (no-member)
+app/routes/books_v2.py:5:0: W0611: Unused get_current_user imported from app.auth.dependencies (unused-import)
+app/routes/books_v2.py:3:0: C0411: standard import "from typing import List, Optional" should be placed before "from fastapi import APIRouter, status, Depends, HTTPException, Query" (wrong-import-order)
+app/routes/books_v2.py:1:0: R0801: Similar lines in 2 files
+==routes.books_v2:93
+==routes.task:59
+    book_fields = set(schema_book.BookCreate.model_fields.keys())
+
+    if not set(data_for_update.keys()) <= book_fields:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Allowed fields: {', '.join(book_fields)}"
+        )
+ (duplicate-code)
+
+------------------------------------------------------------------
+Your code has been rated at 7.93/10 (previous run: 7.93/10, +0.00)
+
