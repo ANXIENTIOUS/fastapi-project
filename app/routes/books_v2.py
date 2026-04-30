@@ -1,9 +1,6 @@
+from typing import List, Optional
 from fastapi import APIRouter, status, Depends, HTTPException, Query
 from sqlmodel import Session, select
-from typing import List, Optional
-
-from app.auth.dependencies import get_current_user
-
 from app.db import get_session
 from app.schemas import book as schema_book
 
@@ -48,7 +45,7 @@ def read_books(
 
     # Фильтр по автору
     if author:
-        query = query.where(schema_book.Book.author.contains(author))
+        query = query.where(schema_book.Book.title.contains(author))
 
     books = session.exec(query).all()
 

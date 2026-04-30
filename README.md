@@ -19,18 +19,6 @@
 
 ---
 
-## Технологии
-
-* Python 3.8+
-* FastAPI
-* SQLModel
-* SQLite
-* python-jose (JWT)
-* passlib (bcrypt)
-* pytest
-
----
-
 ## Структура проекта
 
 ```

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status, HTTPException
 from typing import List
 
-from ..schemas import book as schema_book
+from app.schemas import book as schema_book
 from app.data_handler import (
     write_book_to_csv,
     read_books_from_csv,

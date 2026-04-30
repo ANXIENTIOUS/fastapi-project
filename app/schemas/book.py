@@ -31,12 +31,12 @@ class Book(SQLModel, BookRead, table=True):
 
 
 
-
+'''
 class BookCreate(BaseModel):
     title: str
     author: str
     year: int
     description: Optional[str] = None
-
+'''
 
 
